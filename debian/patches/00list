@@ -1,0 +1,5 @@
+00_freenx-0.4_r167.dpatch
+01_binpath.dpatch
+02_nx_1.5.0_support.dpatch
+03_no-connect-test.dpatch
+04_xorg7-support.dpatch

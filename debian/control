@@ -1,0 +1,17 @@
+Source: freenx
+Section: admin
+Priority: optional
+Maintainer: Stefan Lippers-Hollmann <s.l-h@gmx.de>
+Build-Depends-Indep: debhelper (>= 5.0.0), dpatch
+Standards-Version: 3.6.2
+
+Package: freenx
+Architecture: all
+Depends: debconf (>= 0.5.00) | debconf-2.0, nxagent (>= 1.4.92+1.5.0), openssh-server, openssh-client, netcat, expect, bash (>= 2.05), xbase-clients, xfonts-base, adduser
+Suggests: nxdesktop (>= 1.4.92+1.5.0), nxviewer (>= 1.4.92+1.5.0), smbfs, cupsys, esound-clients, libarts1c2 | libarts1, xdm
+Description: The FreeNX application/thin-client server based on NX technology
+ NoMachine NX is the next-generation X compression and roundtrip suppression
+ scheme. It can operate remote X11 sessions over 56k modem dialup links or
+ anything better.
+ .
+ This package contains a free (GPL) implementation of the nxserver component.

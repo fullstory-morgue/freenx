@@ -1,0 +1,37 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 02_nx_1.5.0_support.patch by Stefan Lippers-Hollmann <s.l-h@gmx.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: enable nx 1.5.0 compatibilty and make rootless support default.
+
+@DPATCH@
+diff -Nrup --exclude=debian freenx-0.4.5.orig/node.conf.sample freenx-0.4.5/node.conf.sample
+--- freenx-0.4.5.orig/node.conf.sample	2005-09-03 20:24:01.000000000 +0200
++++ freenx-0.4.5/node.conf.sample	2005-09-03 21:39:10.249297500 +0200
+@@ -332,11 +332,7 @@
+ #NODE_AUTOSTART=""
+ 
+ # When set to 1 will start nxagent in rootless mode.
+-#ENABLE_ROOTLESS_MODE="0"
+-
+-# When set to 1 enables fake cookie authentication, when a 1.5.0 client 
+-# connects.
+-#ENABLE_1_5_0_BACKEND="0"
++#ENABLE_ROOTLESS_MODE="1"
+ 
+ # If enabled writes entries via the COMMAND_SESSREG program
+ # into utmp/wtmp/lastlog database.
+diff -Nrup --exclude=debian freenx-0.4.5.orig/nxloadconfig freenx-0.4.5/nxloadconfig
+--- freenx-0.4.5.orig/nxloadconfig	2005-09-03 20:24:01.000000000 +0200
++++ freenx-0.4.5/nxloadconfig	2005-09-03 21:40:36.374680000 +0200
+@@ -170,8 +170,8 @@ ENABLE_AUTORECONNECT_BEFORE_140="1"
+ EXPORT_USERIP="0"
+ EXPORT_SESSIONID="0"
+ NODE_AUTOSTART=""
+-ENABLE_ROOTLESS_MODE="0"
+-ENABLE_1_5_0_BACKEND="0"
++ENABLE_ROOTLESS_MODE="1"
++ENABLE_1_5_0_BACKEND="1"
+ ENABLE_USESSION="0"
+ COMMAND_SESSREG="sessreg"
+ AGENT_EXTRA_OPTIONS_RFB=""

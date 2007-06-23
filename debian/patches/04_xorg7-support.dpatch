@@ -1,0 +1,31 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04_xorg7-support.patch by Stefan Lippers-Hollmann <s.l-h@gmx.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Adapt for X.org 7.0/ sid.
+
+@DPATCH@
+diff -Nrup a/nxclient b/nxclient
+--- a/nxclient	2005-09-03 20:24:01.000000000 +0200
++++ b/nxclient	2006-04-13 01:18:24.149667750 +0200
+@@ -60,7 +60,7 @@ then
+ else
+ 	dialog_interface="xmessage"
+ 	xmessage=$(which xmessage 2>/dev/null)
+-	[ -z "$xmessage" ] && xmessage="/usr/X11R6/bin/xmessage"
++	[ -z "$xmessage" ] && xmessage="/usr/bin/xmessage"
+ fi
+ 
+ #
+diff -Nrup a/nxloadconfig b/nxloadconfig
+--- a/nxloadconfig	2005-09-03 20:24:01.000000000 +0200
++++ b/nxloadconfig	2006-04-13 01:18:34.922341000 +0200
+@@ -153,7 +153,7 @@ COMMAND_START_KDE=startkde
+ COMMAND_START_GNOME=gnome-session
+ COMMAND_START_CDE=cdwm
+ COMMAND_XTERM=xterm
+-COMMAND_XAUTH=/usr/X11R6/bin/xauth
++COMMAND_XAUTH=/usr/bin/xauth
+ COMMAND_SMBMOUNT=smbmount
+ COMMAND_SMBUMOUNT=smbumount
+ COMMAND_NETCAT=netcat

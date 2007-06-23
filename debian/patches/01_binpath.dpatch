@@ -1,0 +1,95 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_binpath.patch by Stefan Lippers-Hollmann <s.l-h@gmx.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: set PATH_BIN to /usr/lib/nx
+
+@DPATCH@
+diff --exclude=debian --exclude=patch-stamp -Nrup freenx-0.4.5.orig/nxkeygen freenx-0.4.5/nxkeygen
+--- freenx-0.4.5.orig/nxkeygen	2005-09-03 20:24:01.000000000 +0200
++++ freenx-0.4.5/nxkeygen	2005-09-03 23:45:40.003627500 +0200
+@@ -16,7 +16,7 @@
+ # ========================================================================
+ 
+ # Read the config file
+-. $(PATH=$(cd $(dirname $0) && pwd):$PATH which nxloadconfig) --
++. /usr/lib/nx/nxloadconfig --
+ 
+ NX_KEY_DIR="$NX_HOME_DIR/.ssh"
+ DATE="`date '+%Y%m%d-%H%M%S'`"
+diff --exclude=debian --exclude=patch-stamp -Nrup freenx-0.4.5.orig/nxloadconfig freenx-0.4.5/nxloadconfig
+--- freenx-0.4.5.orig/nxloadconfig	2005-09-03 20:24:01.000000000 +0200
++++ freenx-0.4.5/nxloadconfig	2005-09-03 23:48:32.126384500 +0200
+@@ -57,7 +57,7 @@ NX_LICENSE="OS (GPL)"
+ 
+ # Where can different nx components be found
+ NX_DIR=/usr
+-PATH_BIN=$NX_DIR/bin # if you change that, be sure to also change the public keys
++PATH_BIN=$NX_DIR/lib/nx # if you change that, be sure to also change the public keys
+ PATH_LIB=$NX_DIR/lib
+ NX_ETC_DIR=/etc/nxserver
+ NX_SESS_DIR=/var/lib/nxserver/db
+@@ -242,8 +242,8 @@ fi
+ 
+ [ -z "$AGENT_LIBRARY_PATH" ] && AGENT_LIBRARY_PATH=$PATH_LIB
+ [ -z "$PROXY_LIBRARY_PATH" ] && PROXY_LIBRARY_PATH=$PATH_LIB
+ [ -z "$APPLICATION_LIBRARY_PATH" ] && APPLICATION_LIBRARY_PATH=$PATH_LIB
+-[ -z "$APPLICATION_LIBRARY_PRELOAD" ] && APPLICATION_LIBRARY_PRELOAD="$APPLICATION_LIBRARY_PATH/libX11.so.6.2:$APPLICATION_LIBRARY_PATH/libXext.so.6.4:$APPLICATION_LIBRARY_PATH/libXcomp.so.1:$APPLICATION_LIBRARY_PATH/libXcompext.so.1:$APPLICATION_LIBRARY_PATH/libXrender.so.1.2"
++[ -z "$APPLICATION_LIBRARY_PRELOAD" ] && APPLICATION_LIBRARY_PRELOAD="$APPLICATION_LIBRARY_PATH/libX11-nx.so.6.2:$APPLICATION_LIBRARY_PATH/libXext-nx.so.6.4:$APPLICATION_LIBRARY_PATH/libXcomp.so.1:$APPLICATION_LIBRARY_PATH/libXcompext.so.1:$APPLICATION_LIBRARY_PATH/libXrender-nx.so.1.2"
+ 
+ [ -z "$KDE_PRINTRC" -a -n "$KDEHOME" ] && KDE_PRINTRC="$KDEHOME/share/config/kdeprintrc"
+ [ -z "$KDE_PRINTRC" -a -z "$KDEHOME" ] && KDE_PRINTRC="$HOME/.kde/share/config/kdeprintrc"
+diff --exclude=debian --exclude=patch-stamp -Nrup freenx-0.4.5.orig/nxnode freenx-0.4.5/nxnode
+--- freenx-0.4.5.orig/nxnode	2005-09-03 20:24:01.000000000 +0200
++++ freenx-0.4.5/nxnode	2005-09-03 23:45:40.007627750 +0200
+@@ -18,7 +18,7 @@
+ # 21.06.2004: - Full reconnection support
+ 
+ # Read the config file
+-. $(PATH=$(cd $(dirname $0) && pwd):$PATH which nxloadconfig) --userconf
++. /usr/lib/nx/nxloadconfig --userconf
+ 
+ echo "NX> 1000 NXNODE - Version $NX_VERSION $NX_LICENSE"
+ 
+diff --exclude=debian --exclude=patch-stamp -Nrup freenx-0.4.5.orig/nxserver freenx-0.4.5/nxserver
+--- freenx-0.4.5.orig/nxserver	2005-09-03 20:24:01.000000000 +0200
++++ freenx-0.4.5/nxserver	2005-09-03 23:45:40.007627750 +0200
+@@ -15,7 +15,7 @@
+ #
+ 
+ # Read the config file
+-. $(PATH=$(cd $(dirname $0) && pwd):$PATH which nxloadconfig) --
++. /usr/lib/nx/nxloadconfig --
+ 
+ # following two functions are Copyright by Klaus Knopper
+ 
+@@ -583,7 +583,7 @@ do
+ 			if [ "$LOGIN_SUCCESS" = "1" ]
+ 			then
+ 				# Reread the config files (so that $USER.node.conf get sourced)
+-				. $(PATH=$(cd $(dirname $0) && pwd):$PATH which nxloadconfig) --userconf
++				. /usr/lib/nx/nxloadconfig --userconf
+ 				setup_usermode_auth
+ 
+ 				echo_x "NX> 103 Welcome to: $SERVER_NAME user: $USER"
+diff --exclude=debian --exclude=patch-stamp -Nrup freenx-0.4.5.orig/nxsetup freenx-0.4.5/nxsetup
+--- freenx-0.4.5.orig/nxsetup	2005-09-03 20:24:01.000000000 +0200
++++ freenx-0.4.5/nxsetup	2005-09-03 23:45:40.007627750 +0200
+@@ -127,7 +127,7 @@ fi
+ 
+ 
+ # Read the config file
+-. $(PATH=$(cd $(dirname $0) && pwd):$PATH which nxloadconfig) --
++. /usr/lib/nx/nxloadconfig --
+ 
+ nx_user_exists()
+ {
+@@ -334,7 +334,7 @@ test_nx()
+ 	echo ""
+ 	echo "----> Testing your nxserver configuration ..."
+ 	[ "$IGNORE_ERRORS" = "yes" ] && NO_ERRORS="--ignore-errors"
+-	. $(PATH=$(cd $(dirname $0) && pwd):$PATH which nxloadconfig) --check $NO_ERRORS
++	. /usr/lib/nx/nxloadconfig --check $NO_ERRORS
+ 	echo "<---- done"
+ 	echo ""
+ 	echo "----> Testing your nxserver connection ..."

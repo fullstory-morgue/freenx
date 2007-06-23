@@ -1,0 +1,8 @@
+nxserver	usr/bin/
+nxsetup		usr/sbin/
+nxclient	usr/lib/nx/
+nxkeygen	usr/lib/nx/
+nxloadconfig	usr/lib/nx/
+nxnode		usr/lib/nx/
+nxnode-login	usr/lib/nx/
+nxprint 	usr/lib/nx/

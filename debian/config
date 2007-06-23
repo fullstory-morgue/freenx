@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+# Source debconf library.
+. /usr/share/debconf/confmodule || exit
+
+# most debian systems should have /etc/{group,passwd,shadow}, but
+# chroot and early bootstrap environments might miss it.
+for i in group passwd shadow; do
+	if ! test -r /etc/$i; then
+		db_input high freenx/no_shadow || true
+		db_go
+	fi
+done
+												
+# ask the user which key type to use.
+db_input high freenx/key_type || true
+db_go
+
+exit 0

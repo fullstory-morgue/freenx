@@ -1,0 +1,99 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## freenx-0.4_r167.patch by Stefan Lippers-Hollmann <s.l-h@gmx.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Security: Added timeout for first stage of authentication to prevent DOS.
+
+@DPATCH@
+Author: fabianx
+Date: 2006-02-12 14:30:39 +0100 (Sun, 12 Feb 2006)
+New Revision: 167
+
+Modified:
+   a/ChangeLog
+   a/node.conf.sample
+   a/nxloadconfig
+   a/nxserver
+Log:
+* Security: Added timeout for first stage of authentication to prevent DOS.
+
+
+
+Modified: a/ChangeLog
+===================================================================
+--- a/ChangeLog	2005-09-04 20:58:11 UTC (rev 166)
++++ b/ChangeLog	2006-02-12 13:30:39 UTC (rev 167)
+@@ -1,9 +1,10 @@
+-0?.09.2005 FreeNX 0.4.5 "aKademy Edition"
++xx.02.2006 FreeNX 0.4.5 "Edition"
+ 	* Made nxsetup more user-friendly and hopefully finally failsafe.
+ 	* Added --agent to nxnode/nxserver to allow easier debugging.
+ 	* Added addgroup/groupadd to nxsetup
+ 	* Added --ignore-errors support on nxsetup/nxloadconfig
+ 	* Added check for expect.
++	* Security: Added timeout for first stage of authentication to prevent DOS.
+ 
+ 06.08.2005 FreeNX 0.4.4 "UKUUG Enterprise Edition"
+ 	* Added ENABLE_1_5_0_BACKEND configuration directive:
+
+Modified: a/node.conf.sample
+===================================================================
+--- a/node.conf.sample	2005-09-04 20:58:11 UTC (rev 166)
++++ b/node.conf.sample	2006-02-12 13:30:39 UTC (rev 167)
+@@ -92,7 +92,12 @@
+ #    is not provided.
+ #SSHD_CHECK_IP="0"
+ 
++# If set to greater zero, nxserver will timeout after that many seconds
++# before authentication succeeds.
++#
++#NX_SERVER_TIMEOUT="10"
+ 
++
+ #########################################################################
+ # Restriction directives
+ #########################################################################
+
+Modified: a/nxloadconfig
+===================================================================
+--- a/nxloadconfig	2005-09-04 20:58:11 UTC (rev 166)
++++ b/nxloadconfig	2006-02-12 13:30:39 UTC (rev 167)
+@@ -92,6 +92,7 @@
+ 
+ ENABLE_FORCE_ENCRYPTION="0"
+ SSHD_CHECK_IP="0"
++NX_SERVER_TIMEOUT="10"
+ 
+ 
+ # Restriction directives
+
+Modified: a/nxserver
+===================================================================
+--- a/nxserver	2005-09-04 20:58:11 UTC (rev 166)
++++ b/nxserver	2006-02-12 13:30:39 UTC (rev 167)
+@@ -475,6 +475,15 @@
+ 
+ echo_x "HELLO NXSERVER - Version $NX_VERSION $NX_LICENSE"
+ 
++NX_SERVER_TPID=""
++
++if [ -n "$NX_SERVER_TIMEOUT" -a "$NX_SERVER_TIMEOUT" -gt 0 ]
++then
++	(sleep "$NX_SERVER_TIMEOUT"; echo -e "Quit\nNX> 999 Bye"; kill $PPID) &
++	NX_SERVER_TPID="$!"
++	disown $NX_SERVER_TPID
++fi
++
+ # Login stage
+ while true
+ do
+@@ -597,6 +606,8 @@
+ 	esac
+ done
+ 
++[ -n "$NX_SERVER_TPID" ] && kill $NX_SERVER_TPID
++
+ # remove old session infos from history
+ session_cleanup
+ 
+

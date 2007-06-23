@@ -1,0 +1,39 @@
+Template: freenx/no_shadow
+Type: note
+_Description: Essential dependencies not met on your system
+ You're missing at least one of these essential files:
+ .
+ /etc/group
+ .
+ /etc/passwd
+ .
+ /etc/shadow
+ .
+ Please configure your system properly and run "dpkg-reconfigure freenx"
+ afterwards to set up FreeNX.
+ .
+ FreeNX is not configured and can't be used right now.
+
+Template: freenx/key_type
+Type: select
+Choices: NoMachine Keys, Custom keys, Remove freenx keys, Manual setup
+_Description: Which key type should freenx use?
+ NoMachine Keys: Allow login with the key shipped with the NoMachine client.
+ This is not as secure, but it simplifies the configuration of clients.
+ .
+ Custom keys: Create custom keys for freenx, while this is the most secure
+ option you will have to distribute the server key to all involved clients,
+ import your server's /var/lib/nxserver/home/.ssh/client.id_dsa.key to your
+ nx client (custom keys are not supported upstream).
+ .
+ Manual setup: setup freenx manually using /usr/sbin/nxsetup, leave existing 
+ configurations alone.
+ .
+ Remove freenx keys: Remove or don't create keys and leave freenx
+ unconfigured.
+
+Template: freenx/configured
+Type: boolean
+Default: false
+Description: internal use only
+ This template is never shown to the user and does not require translation.

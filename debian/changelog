@@ -1,3 +1,10 @@
+freenx (0.4.4+0.4.5-5) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+  * add VCS control headers.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 11 Sep 2007 20:13:26 +0200
+
 freenx (0.4.4+0.4.5-4) unstable; urgency=low
 
   * add r167 from upstream svn, freenx-0.4 branch:
@@ -6,9 +13,8 @@ freenx (0.4.4+0.4.5-4) unstable; urgency=low
   * adapt for X.org 7.
   * depend on openssh-{server,client} directly.
   * minor touch ups.
-  * add VCS control headers.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 11 Sep 2007 20:10:27 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 13 Apr 2006 01:20:44 +0200
 
 freenx (0.4.4+0.4.5-3) unstable; urgency=low
 

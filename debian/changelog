@@ -2,8 +2,9 @@ freenx (0.4.4+0.4.5-5) UNRELEASED; urgency=low
 
   * NOT RELEASED YET
   * add VCS control headers.
+  * update syntax for Vcs headers in debian/control
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 11 Sep 2007 20:13:26 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Oct 2007 14:41:07 +0200
 
 freenx (0.4.4+0.4.5-4) unstable; urgency=low
 

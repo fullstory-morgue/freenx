@@ -1,3 +1,9 @@
+freenx (0.4.4+0.4.5-6) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 08 Dec 2007 17:00:42 +0100
+
 freenx (0.4.4+0.4.5-5) unstable; urgency=low
 
   * add VCS control headers.

@@ -6,6 +6,7 @@ Build-Depends-Indep: debhelper (>= 5.0.0), dpatch
 Standards-Version: 3.7.3
 Vcs-Svn: svn://svn.berlios.de/fullstory/freenx/trunk
 Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/freenx/trunk/
+Homepage: http://freenx.berlios.de/
 
 Package: freenx
 Architecture: all

@@ -4,8 +4,10 @@ freenx (0.4.4+0.4.5-5) UNRELEASED; urgency=low
   * add VCS control headers.
   * update syntax for Vcs headers in debian/control
   * update to Standards-Version 3.7.3, no changes necessary.
+  * add Homepage tag.
+  * add debian/watch.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 03 Dec 2007 13:49:12 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 08 Dec 2007 13:17:48 +0100
 
 freenx (0.4.4+0.4.5-4) unstable; urgency=low
 

@@ -1,8 +1,9 @@
-freenx (0.4.4+0.4.5-6) UNRELEASED; urgency=low
+freenx (0.4.4+0.4.5-6) ORPHANED; urgency=low
 
   * NOT RELEASED YET
+  * ORPHAN PACKAGE
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 08 Dec 2007 17:00:42 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 05 Jan 2008 01:38:15 +0100
 
 freenx (0.4.4+0.4.5-5) unstable; urgency=low
 
